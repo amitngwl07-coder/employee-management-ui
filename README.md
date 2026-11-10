@@ -1,59 +1,148 @@
-# EmployeeManagementUi
+# Employee Management System – Angular Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.6.
+A responsive Employee Management System built using **Angular 22** and **Angular Material**. This application provides an intuitive interface for managing employee records, monitoring workforce statistics, and performing employee-related operations.
 
-## Development server
+## 🚀 Project Overview
 
-To start a local development server, run:
+The Employee Management System is designed to simplify employee record management through a clean dashboard and an interactive user interface.
+
+It communicates with a Spring Boot REST API to perform CRUD operations and retrieve employee statistics.
+
+## ✨ Features
+
+- **Dashboard:** View total employees, active employees, inactive employees, and recently added employees.
+- **Employee Management:** Add, view, update, and delete employee records.
+- **Search:** Search employees by employee code, name, email, and department.
+- **Pagination:** Navigate employee records with configurable page sizes.
+- **Sorting:** Sort employee records by different table columns.
+- **Filtering:** Filter employees by department and employment status.
+- **Form Validation:** Validate employee information before submission.
+- **Error Handling:** Display meaningful API error messages and notifications.
+- **Responsive Design:** User-friendly interface across desktop and mobile devices.
+- **Confirmation Dialog:** Confirm before deleting employee records.
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| Angular 22 | Frontend framework |
+| TypeScript | Programming language |
+| Angular Material | UI components |
+| SCSS | Styling |
+| RxJS | Reactive programming |
+| HTML5 | Application structure |
+| CSS3 | Responsive styling |
+| REST API | Backend communication |
+
+## 📸 Screenshots
+
+Screenshots of the application will be added here.
+
+- Dashboard
+- Employee Listing
+- Add Employee
+- Edit Employee
+- Delete Confirmation
+
+## 📂 Project Structure
+
+```text
+src/
+├── app/
+│   ├── features/
+│   │   ├── dashboard/
+│   │   ├── employees/
+│   │   └── employee-form/
+│   ├── layout/
+│   │   ├── header/
+│   │   └── sidebar/
+│   ├── shared/
+│   │   └── delete-confirmation-dialog/
+│   ├── models/
+│   └── services/
+├── environments/
+└── styles.scss
+```
+
+## ⚙️ Prerequisites
+
+Make sure the following are installed:
+
+- Node.js
+- npm
+- Angular CLI 22
+- Git
+- Running Spring Boot backend
+- MySQL database configured for the backend
+
+## 💻 Installation and Setup
+
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/amitngwl07-coder/employee-management-ui.git
+```
+
+**2. Navigate to the project directory**
+
+```bash
+cd employee-management-ui
+```
+
+**3. Install dependencies**
+
+```bash
+npm install
+```
+
+**4. Configure the backend API URL**
+
+Configure the backend API base URL in the Angular environment configuration.
+
+For local development, use:
+
+```text
+http://localhost:8080/api/employees
+```
+
+Make sure the Spring Boot backend is running and accessible.
+
+**5. Start the development server**
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open your browser:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```text
+http://localhost:4200/
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🏗️ Production Build
+
+To create an optimized production build:
 
 ```bash
-ng generate --help
+ng build --configuration production
 ```
 
-## Building
+The generated build files will be available in the `dist/` directory.
 
-To build the project run:
+## 🧪 Testing
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Run unit tests using:
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## 🔗 Related Repository
 
-For end-to-end (e2e) testing, run:
+**Spring Boot Backend:**
 
-```bash
-ng e2e
-```
+https://github.com/amitngwl07-coder/employee-management-system-backend
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 👨‍💻 Developer
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Developed as a full-stack portfolio project to demonstrate practical Angular frontend development and REST API integration skills.
