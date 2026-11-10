@@ -50,10 +50,13 @@ export class Employees implements OnInit {
 
   protected departmentOptions = [
     { label: 'All Departments', value: '' },
+    { label: 'IT', value: 'IT' },
     { label: 'HR', value: 'HR' },
     { label: 'Finance', value: 'Finance' },
     { label: 'Marketing', value: 'Marketing' },
-    { label: 'SYSTEM-DESIGN', value: 'SYSTEM-DESIGN' }
+    { label: 'Sales', value: 'Sales' },
+    { label: 'Engineering', value: 'Engineering' },
+    { label: 'Operations', value: 'Operations' }
   ];
 
   protected statusOptions = [
