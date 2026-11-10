@@ -38,11 +38,22 @@ It communicates with a Spring Boot REST API to perform CRUD operations and retri
 
 Screenshots of the application will be added here.
 
-- Dashboard
-- Employee Listing
-- Add Employee
-- Edit Employee
-- Delete Confirmation
+## Screenshots
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Employee List
+![Employee List](screenshots/employee-list.png)
+
+### Search and Filters
+![Search and Filters](screenshots/employee-search-filter.png)
+
+### Add Employee
+![Add Employee](screenshots/add-employee.png)
+
+### Edit Employee
+![Edit Employee](screenshots/edit-employee.png)
 
 ## 📂 Project Structure
 
