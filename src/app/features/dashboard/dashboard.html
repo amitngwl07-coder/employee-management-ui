@@ -1,0 +1,115 @@
+<div class="dashboard">
+
+  <!-- Dashboard Heading -->
+  <div class="dashboard-heading">
+    <div>
+      <h2>Dashboard Overview</h2>
+      <p>Here's an overview of your employee management system.</p>
+    </div>
+  </div>
+
+  <!-- Statistics Cards -->
+  <div class="stats-grid">
+
+    @for (stat of stats; track stat.title) {
+      <div class="stat-card">
+
+        <div class="stat-content">
+          <span class="stat-title">{{ stat.title }}</span>
+
+          @if (isLoadingStatistics) {
+            <h3>...</h3>
+          } @else {
+            <h3>{{ stat.value }}</h3>
+          }
+
+          <p>{{ stat.description }}</p>
+        </div>
+
+        <div class="stat-icon" [ngClass]="stat.color">
+          {{ stat.icon }}
+        </div>
+
+      </div>
+    }
+
+  </div>
+
+  <!-- Statistics Error -->
+  @if (statisticsError) {
+    <p class="error-message" role="alert">
+      {{ statisticsError }}
+    </p>
+  }
+
+  <!-- Recent Employees -->
+  <div class="employees-section">
+
+    <div class="section-header">
+      <div>
+        <h3>Recent Employees</h3>
+        <p>Recently added employees to your organization.</p>
+      </div>
+
+      <button type="button" (click)="navigateToEmployees()">
+        View All
+      </button>
+    </div>
+
+    <div class="table-container">
+
+      @if (isLoadingRecentEmployees) {
+
+        <p class="table-message">Loading employees...</p>
+
+      } @else if (recentEmployeesError) {
+
+        <p class="error-message" role="alert">
+          {{ recentEmployeesError }}
+        </p>
+
+      } @else if (recentEmployees.length === 0) {
+
+        <p class="table-message">No employees found.</p>
+
+      } @else {
+
+        <table>
+          <thead>
+            <tr>
+              <th>Employee ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Department</th>
+              <th>Joining Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (employee of recentEmployees; track employee.id) {
+              <tr>
+                <td>#{{ employee.employeeCode ?? employee.id }}</td>
+                <td class="employee-name">{{ employee.name }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.department }}</td>
+                <td>
+                  {{ employee.joiningDate ? (employee.joiningDate | date:'dd MMM yyyy') : 'N/A' }}
+                </td>
+                <td>
+                  <span class="status" [ngClass]="employee.status?.toLowerCase()">
+                    {{ employee.status ?? 'N/A' }}
+                  </span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+
+      }
+
+    </div>
+
+  </div>
+
+</div>

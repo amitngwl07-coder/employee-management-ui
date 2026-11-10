@@ -1,0 +1,42 @@
+<header class="header">
+  <!-- Page Title -->
+  <div class="header-left">
+    <div class="page-heading">
+      <h1>{{ pageTitle }}</h1>
+      <p>Welcome back! Here's what's happening today.</p>
+    </div>
+  </div>
+
+  <!-- Header Actions -->
+  <div class="header-right">
+
+    <!-- Search -->
+    <div class="search-box">
+      <span class="search-icon">⌕</span>
+      <input
+        type="text"
+        placeholder="Search employees..."
+        aria-label="Search employees"
+      />
+    </div>
+
+    <!-- Notifications -->
+    <button class="icon-button" type="button" aria-label="Notifications">
+      <span class="notification-icon">♧</span>
+      <span class="notification-dot"></span>
+    </button>
+
+    <!-- User Profile -->
+    <div class="user-profile">
+      <div class="avatar">
+        {{ userName.charAt(0) }}
+      </div>
+
+      <div class="user-info">
+        <span class="user-name">{{ userName }}</span>
+        <span class="user-role">{{ userRole }}</span>
+      </div>
+    </div>
+
+  </div>
+</header>

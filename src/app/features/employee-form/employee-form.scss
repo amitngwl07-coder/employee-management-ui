@@ -1,0 +1,169 @@
+
+.form-page {
+  width: 100%;
+  max-width: 850px;
+  box-sizing: border-box;
+}
+
+.page-heading {
+  margin-bottom: 24px;
+
+  h1 {
+    margin: 0 0 8px;
+    font-size: 26px;
+  }
+
+  p {
+    margin: 0;
+    color: #64748b;
+    line-height: 1.5;
+  }
+}
+
+.form-card {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 28px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 22px;
+
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  input,
+  select {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    font-size: 14px;
+    outline: none;
+
+    &:focus {
+      border-color: #2563eb;
+    }
+  }
+}
+
+.error {
+  color: #dc2626;
+  font-size: 12px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.cancel-button,
+.submit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 20px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.cancel-button {
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.submit-button {
+  color: #fff;
+  background: #2563eb;
+  border: none;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .form-card {
+    padding: 22px;
+  }
+
+  .page-heading h1 {
+    font-size: 24px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .form-page {
+    max-width: 100%;
+  }
+
+  .page-heading {
+    margin-bottom: 18px;
+
+    h1 {
+      font-size: 22px;
+    }
+
+    p {
+      font-size: 13px;
+    }
+  }
+
+  .form-card {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+
+    input,
+    select {
+      padding: 12px;
+      font-size: 16px;
+    }
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .cancel-button,
+  .submit-button {
+    width: 100%;
+    min-height: 44px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 380px) {
+  .form-card {
+    padding: 12px;
+  }
+
+  .page-heading h1 {
+    font-size: 20px;
+  }
+}

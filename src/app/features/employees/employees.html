@@ -1,0 +1,306 @@
+<div class="employees-page">
+
+  <!-- Page Heading -->
+  <div class="page-heading">
+    <div>
+      <h2>Employee Management</h2>
+      <p>Manage and view all employees in your organization.</p>
+    </div>
+
+    <a routerLink="/employees/new" class="add-employee-button">
+      <mat-icon>add</mat-icon>
+      Add Employee
+    </a>
+  </div>
+
+  <!-- Employee Statistics -->
+  <div class="employee-summary">
+
+    <div class="summary-card">
+      <span class="summary-label">Total Employees</span>
+      <h3>{{ totalEmployees }}</h3>
+    </div>
+
+    <div class="summary-card">
+      <span class="summary-label">Departments</span>
+      <h3>{{ getDepartmentCount() }}</h3>
+    </div>
+
+    <div class="summary-card">
+      <span class="summary-label">Showing Employees</span>
+      <h3>{{ employees.length }}</h3>
+    </div>
+
+  </div>
+
+  <!-- Employee Table Section -->
+  <div class="employees-section">
+
+    <div class="section-header">
+      <div>
+        <h3>All Employees</h3>
+        <p>View and manage your employee records.</p>
+      </div>
+
+      <span class="employee-count">
+        {{ employees.length }} Employees
+      </span>
+    </div>
+
+    <!-- Search -->
+    <!-- Search and Filters -->
+    <div class="employee-filters">
+
+      <div class="search-container">
+        <span class="search-icon">⌕</span>
+        <input type="text" placeholder="Search by employee code, name, email or department..."
+          aria-label="Search employees" [value]="searchTerm" (input)="onSearch($event)" />
+      </div>
+
+      <div class="filter-container">
+        <select aria-label="Filter by department" [value]="selectedDepartment" (change)="onDepartmentChange($event)">
+          @for (option of departmentOptions; track option.value) {
+          <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="filter-container">
+        <select aria-label="Filter by status" [value]="selectedStatus" (change)="onStatusChange($event)">
+          @for (option of statusOptions; track option.value) {
+          <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </div>
+
+      <button type="button" class="clear-filters-button"
+        [disabled]="!searchTerm && !selectedDepartment && !selectedStatus" (click)="onClearFilters()">
+        <mat-icon>filter_alt_off</mat-icon>
+        Clear Filters
+      </button>
+
+    </div>
+
+    <!-- Loading -->
+    @if (isLoading) {
+    <div class="loading-container" role="status" aria-live="polite">
+      <div class="loading-spinner"></div>
+      <p>Loading employees...</p>
+    </div>
+    }
+
+    <!-- Error -->
+    @else if (errorMessage) {
+    <div class="empty-state">
+      <mat-icon>error_outline</mat-icon>
+
+      <h3>Unable to Load Employees</h3>
+
+      <p>{{ errorMessage }}</p>
+
+      <button type="button" class="empty-state-button" (click)="onRetry()">
+        <mat-icon>refresh</mat-icon>
+        Try Again
+      </button>
+    </div>
+    }
+
+    <!-- Table -->
+    @else {
+    <div class="table-container">
+
+      <table>
+
+
+        <thead>
+          <tr>
+            <th class="sortable-header" (click)="onSort('employeeCode')" title="Sort by Employee Code">
+              Employee Code
+              <span class="sort-indicator">
+                {{ sortBy === 'employeeCode'
+                ? (sortDirection === 'asc' ? '↑' : '↓')
+                : '↕' }}
+              </span>
+            </th>
+
+            <th class="sortable-header" (click)="onSort('name')" title="Sort by Employee Name">
+              Employee
+              <span class="sort-indicator">
+                {{ sortBy === 'name'
+                ? (sortDirection === 'asc' ? '↑' : '↓')
+                : '↕' }}
+              </span>
+            </th>
+
+            <th class="sortable-header" (click)="onSort('department')" title="Sort by Department">
+              Department
+              <span class="sort-indicator">
+                {{ sortBy === 'department'
+                ? (sortDirection === 'asc' ? '↑' : '↓')
+                : '↕' }}
+              </span>
+            </th>
+
+            <th class="sortable-header" (click)="onSort('joiningDate')" title="Sort by Joining Date">
+              Joining Date
+              <span class="sort-indicator">
+                {{ sortBy === 'joiningDate'
+                ? (sortDirection === 'asc' ? '↑' : '↓')
+                : '↕' }}
+              </span>
+            </th>
+
+            <th class="sortable-header" (click)="onSort('status')" title="Sort by Status">
+              Status
+              <span class="sort-indicator">
+                {{ sortBy === 'status'
+                ? (sortDirection === 'asc' ? '↑' : '↓')
+                : '↕' }}
+              </span>
+            </th>
+
+            <th class="sortable-header" (click)="onSort('createdOn')" title="Sort by Created On">
+              Created On
+              <span class="sort-indicator">
+                {{ sortBy === 'createdOn'
+                ? (sortDirection === 'asc' ? '↑' : '↓')
+                : '↕' }}
+              </span>
+            </th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (employee of employees; track employee.id) {
+          <tr>
+
+            <!-- Employee Code -->
+            <td>
+              {{ employee.employeeCode ?? 'N/A' }}
+            </td>
+
+            <!-- Employee Details -->
+            <td>
+              <div class="employee-info">
+                <div class="employee-avatar">
+                  {{ employee.name.charAt(0).toUpperCase() }}
+                </div>
+
+                <div>
+                  <span class="employee-name">
+                    {{ employee.name }}
+                  </span>
+
+                  <span class="employee-email">
+                    {{ employee.email }}
+                  </span>
+                </div>
+              </div>
+            </td>
+
+            <!-- Department -->
+            <td>{{ employee.department }}</td>
+
+            <!-- Joining Date -->
+            <td>
+              {{ employee.joiningDate
+              ? (employee.joiningDate | date:'dd MMM yyyy')
+              : 'N/A' }}
+            </td>
+
+            <!-- Status -->
+            <td>
+              <span class="status" [class.active]="employee.status === 'ACTIVE'"
+                [class.inactive]="employee.status === 'INACTIVE'">
+                {{ employee.status ?? 'N/A' }}
+              </span>
+            </td>
+
+            <!-- Created On -->
+            <td>
+              {{ employee.createdOn
+              ? (employee.createdOn | date:'dd MMM yyyy')
+              : 'N/A' }}
+            </td>
+
+            <!-- Actions -->
+            <td>
+              <div class="action-buttons">
+
+                <a [routerLink]="['/employees/edit', employee.id]" title="Edit Employee" class="edit-button">
+                  <mat-icon>edit</mat-icon>
+                </a>
+
+                <button type="button" title="Delete Employee" class="delete-button delete-button-border"
+                  [disabled]="deletingEmployeeId === employee.id" (click)="onDelete(employee)">
+                  <mat-icon>
+                    {{ deletingEmployeeId === employee.id
+                    ? 'hourglass_empty'
+                    : 'delete' }}
+                  </mat-icon>
+                </button>
+
+              </div>
+            </td>
+
+          </tr>
+
+          } @empty {
+          <tr>
+            <td colspan="7" class="empty-state-cell">
+
+              <div class="empty-state">
+
+                @if (searchTerm || selectedDepartment || selectedStatus) {
+
+                <mat-icon>search_off</mat-icon>
+
+                <h3>No Matching Employees</h3>
+
+                <p>
+                  We couldn't find any employees matching your search or selected filters.
+                </p>
+
+                <button type="button" class="empty-state-button" (click)="onClearFilters()">
+                  Clear Filters
+                </button>
+
+                } @else {
+
+                <mat-icon>people_outline</mat-icon>
+
+                <h3>No Employees Yet</h3>
+
+                <p>
+                  You haven't added any employees yet. Start by adding your first employee.
+                </p>
+
+                <a routerLink="/employees/new" class="empty-state-button">
+                  <mat-icon>add</mat-icon>
+                  Add First Employee
+                </a>
+
+                }
+
+              </div>
+
+            </td>
+          </tr>
+          }
+
+        </tbody>
+      </table>
+
+      <!-- Pagination -->
+      <mat-paginator [length]="totalEmployees" [pageIndex]="pageIndex" [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions" [showFirstLastButtons]="true" (page)="onPageChange($event)"
+        aria-label="Select employee page">
+      </mat-paginator>
+
+    </div>
+    }
+
+  </div>
+
+</div>

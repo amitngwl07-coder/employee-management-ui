@@ -1,0 +1,54 @@
+<aside class="sidebar">
+
+  <div class="brand">
+    <mat-icon>business</mat-icon>
+    <span>EMS Portal</span>
+  </div>
+
+  <div class="menu-label">MAIN MENU</div>
+
+  <nav class="navigation">
+
+    <!-- Dashboard -->
+<a
+  routerLink="/dashboard"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+  class="sidebar-link"
+>
+  <mat-icon>dashboard</mat-icon>
+  <span>Dashboard</span>
+</a>
+
+<!-- Employees -->
+<a
+  routerLink="/employees"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+  class="sidebar-link"
+>
+  <mat-icon>groups</mat-icon>
+  <span>Employees</span>
+</a>
+
+<!-- Add Employee -->
+<a
+  routerLink="/employees/new"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+  class="sidebar-link"
+>
+  <mat-icon>person_add</mat-icon>
+  <span>Add Employee</span>
+</a>
+
+  </nav>
+
+  <div class="sidebar-footer">
+    <a class="nav-item">
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+    </a>
+  </div>
+
+</aside>
